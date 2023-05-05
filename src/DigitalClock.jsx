@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 
-export default function DigitalClock() {
-    const [currentTime, setCurrentTime] = useState(new Date());
+function DigitalClock() {
+  const [currentTime, setCurrentTime] = useState(moment());
 
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setCurrentTime(new Date());
-        }, 1000);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentTime(moment());
+    }, 1000);
 
-        return () => {
-            clearInterval(intervalId);
-        };
-    }, []);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
-    const hours = currentTime.getHours().toString().padStart(2, '0');
-    const minutes = currentTime.getMinutes().toString().padStart(2, '0');
-    const seconds = currentTime.getSeconds().toString().padStart(2, '0');
+  const timeString = currentTime.format('h:mm:ss a');
 
-    return (
-        <h1 className="text-[12rem] font-bold text-center">
-            {hours}:{minutes}:{seconds}
-        </h1>
-    );
+  return (
+    <div className="text-[12rem] font-bold text-center uppercase">
+      {timeString}
+    </div>
+  );
 }
+
+export default DigitalClock;
