@@ -18,7 +18,7 @@ export default function DigitalClock() {
     const seconds = currentTime.getSeconds().toString().padStart(2, '0');
 
     return (
-        <h1 className="text-9xl font-bold text-center">
+        <h1 className="text-[12rem] font-bold text-center">
             {hours}:{minutes}:{seconds}
         </h1>
     );
